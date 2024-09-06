@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Filters</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+        .title-bar {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            margin-bottom: 20px;
+        }
+        h2, h3 {
+            margin: 0;
+        }
+        .filter {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .filter select, .filter input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .apply-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .processor-item:hover {
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title-bar">Mobile Filters</h1>
+        <form id="searchForm">
+            <div class="filter">
+                <h2>RAM</h2>
+                <select id="ram" name="ram">
+                    <option value="">Select</option>
+                    <option value="4GB">4GB</option>
+                    <option value="8GB">8GB</option>
+                    <option value="12GB">12GB</option>
+                    <option value="16GB">16GB</option>
+                    <option value="24GB">24GB</option>
+                </select>
+            </div>
+
+            <div class="filter">
+                <h2>Display</h2>
+                <select id="display" name="display">
+                    <option value="">Select</option>
+                    <option value="LCD">LCD</option>
+                    <option value="P-OLED">P-OLED</option>
+                    <option value="AMOLED">AMOLED</option>
+                    <option value="OLED">OLED</option>
+                    <option value="LED">LED</option>
+                    <option value="LTPO">LTPO</option>
+                </select>
+            </div>
+
+            <div class="filter">
+                <h2>ROM</h2>
+                <select id="rom" name="rom">
+                    <option value="">Select</option>
+                    <option value="64GB">64GB</option>
+                    <option value="128GB">128GB</option>
+                    <option value="256GB">256GB</option>
+                    <option value="512GB">512GB</option>
+                    <option value="1TB">1TB</option>
+                </select>
+            </div>
+            <div class="filter">
+                <h2>Processor</h2>
+                <input type="text" id="processor" name="processor" placeholder="Enter processor name">
+                <div id="processorList"></div>
+            </div>
+            <div class="filter">
+                <h2>Screen Size</h2>
+                <select id="screen_size" name="screen_size">
+                    <option value="">Select</option>
+                    <option value="3.0 - 4.0">3.0 - 4.0</option>
+                    <option value="4.1 - 5.4">4.1 - 5.4</option>
+                    <option value="5.5 - 6.4">5.5 - 6.4</option>
+                    <option value="6.5 - 7.4">6.5 - 7.4</option>
+                </select>
+            </div>
+
+            <div class="filter">
+                <h2>Battery Capacity</h2>
+                <select id="battery_capacity" name="battery_capacity">
+                    <option value="">Select</option>
+                    <option value="Below 3000 mAh">Below 3000 mAh</option>
+                    <option value="3000 mAh - 5000 mAh">3000 mAh - 5000 mAh</option>
+                    <option value="5001 mAh - 7000 mAh">5001 mAh - 7000 mAh</option>
+                    <option value="7001 mAh - 9000 mAh">7001 mAh - 9000 mAh</option>
+                </select>
+            </div>
+
+            <div class="filter">
+                <h2>Front Camera</h2>
+                <select id="front_camera" name="front_camera">
+                    <option value="">Select</option>
+                    <option value="32 MP">32 MP</option>
+                    <option value="25 MP">25 MP</option>
+                    <option value="20 MP">20 MP</option>
+                    <option value="16 MP">16 MP</option>
+                    <option value="13 MP">13 MP</option>
+                    <option value="8 MP">8 MP</option>
+                    <option value="5 MP">5 MP</option>
+                </select>
+            </div>
+
+            <div class="filter">
+                <h2>Back Camera</h2>
+                <select id="back_camera" name="back_camera">
+                    <option value="">Select</option>
+                    <option value="12 MP">12 MP</option>
+                    <option value="13 MP">13 MP</option>
+                    <option value="16 MP">16 MP</option>
+                    <option value="20 MP">20 MP</option>
+                    <option value="48 MP">48 MP</option>
+                    <option value="64 MP">64 MP</option>
+                    <option value="8 MP">8 MP</option>
+                    <option value="24 MP">24 MP</option>
+                    <option value="32 MP">32 MP</option>
+                    <option value="108 MP">108 MP</option>
+                </select>
+            </div>
+
+            <div class="filter">
+                <h2>Cellular</h2>
+                <select id="cellular" name="cellular">
+                    <option value="">Select</option>
+                    <option value="3G">3G</option>
+                    <option value="4G">4G</option>
+                    <option value="5G">5G</option>
+                </select>
+            </div>
+
+            <div class="filter">
+                <h2>OS</h2>
+                <select id="operating_system" name="os">
+                    <option value="">Select</option>
+                    <optgroup label="Android">
+                        <option value="Android 14">Android 14</option>
+                        <option value="Android 13">Android 13</option>
+                        <option value="Android 12">Android 12</option>
+                        <option value="Android 11">Android 11</option>
+                        <option value="Android 10">Android 10</option>
+                        <option value="Android 9 (Pie)">Android 9 (Pie)</option>
+                        <option value="Android 8.1 (Oreo)">Android 8.1 (Oreo)</option>
+                        <option value="Android 8.0 (Oreo)">Android 8.0 (Oreo)</option>
+                        <option value="Android 7.1 (Nougat)">Android 7.1 (Nougat)</option>
+                        <option value="Android 7.0 (Nougat)">Android 7.0 (Nougat)</option>
+                        <option value="Android 6.0 (Marshmallow)">Android 6.0 (Marshmallow)</option>
+                    </optgroup>
+                    <optgroup label="iOS">
+                        <option value="iOS 17">iOS 17</option>
+                        <option value="iOS 16">iOS 16</option>
+                        <option value="iOS 15">iOS 15</option>
+                        <option value="iOS 14">iOS 14</option>
+                        <option value="iOS 13">iOS 13</option>
+                        <option value="iOS 12">iOS 12</option>
+                        <option value="iOS 11">iOS 11</option>
+                    </optgroup>
+                    <optgroup label="HarmonyOS (Huawei)">
+                       
+                        <option value="HarmonyOS 2">HarmonyOS 2</option>
+                       
+                    </optgroup>
+                </select>
+            </div>
+            
+            <div class="filter">
+                <h2>Price</h2>
+                <select id="price" name="price">
+                    <option value="">Select</option>
+                    <option value="UPTO 10000">Up to 10,000</option>
+                    <option value="10001 - 20000">10,001 - 20,000</option>
+                    <option value="20001 - 50000">20,001 - 50,000</option>
+                    <option value="50001 - 1 lakh">50,001 - 1,00,000</option>
+                    <option value="above 1 lakh">Above 1,00,000</option>
+                </select>
+            </div>
+            <button type="button" class="apply-button" onclick="applyFilters()">Apply Filters</button>
+
+        </form>
+    </div>
+    <div id="smartphonesList"></div>
+
+
+    <script>
+       document.getElementById('processor').addEventListener('input', function() {
+    const inputValue = this.value.toLowerCase();
+
+    fetch('processors.json')
+        .then(response => response.json())
+        .then(data => {
+            const filteredProcessors = data.filter(item => item.processor.toLowerCase().includes(inputValue)).slice(0, 10);
+            const processorList = document.getElementById('processorList');
+            processorList.innerHTML = '';
+            filteredProcessors.forEach(item => {
+                const processorItem = document.createElement('div');
+                processorItem.textContent = item.processor;
+                processorItem.classList.add('processor-item');
+                processorItem.addEventListener('click', function() {
+                    document.getElementById('processor').value = item.processor;
+                    processorList.innerHTML = ''; // Clear the suggestion list
+                });
+                processorList.appendChild(processorItem);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching processors:', error);
+        });
+});
+
+        function applyFilters() {
+    const form = document.getElementById('searchForm');
+    const formData = new FormData(form);
+    const queryString = new URLSearchParams(formData).toString();
+
+    fetch(`search.php?${queryString}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.length > 0) {
+                console.log('Filtered data has been saved to smartphones.json');
+                openPage();
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+
+
+    let selectedFilters = {};
+
+    // Iterate over form data to get selected filters and their values
+    for (const [key, value] of formData.entries()) {
+        if(key == 'os')
+            selectedFilters['operating_system'] = value ;
+        else
+        selectedFilters[key] = value;
+    }
+
+    // Store selected filters in session storage
+    sessionStorage.setItem('selectedFilters', JSON.stringify(selectedFilters));
+
+    // Construct queryString using URLSearchParams
+   
+
+    // Send selected filters to the PHP file for processing
+   // const queryString = new URLSearchParams(selectedFilters).toString();
+
+fetch(`process_filters.php?${queryString}`, { // Append queryString to the URL
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(selectedFilters)
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
+})
+.then(data => {
+    console.log('Matching data from search history:');
+    console.log(data);
+
+    // Initialize an object to store additional features
+    const additionalFeatures = {};
+
+    // Iterate over the returned data
+    data.forEach(record => {
+        // Initialize additional features for the current record
+        const recordFeatures = {};
+
+        // Iterate over each feature in the record
+        for (const key in record) {
+            // Check if the feature is not in selected filters and has a value
+            if (!selectedFilters[key] && record[key] !== null && record[key] !== "") {
+                recordFeatures[key] = record[key];
+            }
+        }
+
+        // Add the additional features to the main object
+        additionalFeatures[`Record ${data.indexOf(record) + 1}`] = recordFeatures;
+    });
+
+    // Display additional features
+    console.log('Additional Features:');
+    console.log(additionalFeatures);
+    const jsonData = JSON.stringify(additionalFeatures);
+
+    // Store the JSON data in session storage
+    sessionStorage.setItem('suggestion', jsonData);
+})
+.catch(error => {
+    console.error('Error:', error);
+});
+}
+
+function sendDataToSearchPHP(formData) {
+    fetch('search.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Data received from search.php:', data);
+        
+        if (data && data.length > 0) {
+            // If data is not empty, call openPage
+            openPage();
+        } else {
+            console.log('No matching data found.');
+            // Handle the case where no matching data is found
+        }
+        // Handle the data as needed
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+
+
+
+   
+}
+
+
+
+
+        function openPage() {
+            // Specify the URL of the webpage you want to open
+            var url = 'results.php';
+
+            // Open the webpage in the same tab
+            window.location.href = url;
+        }
+
+       // Check if redirection has occurred
+       window.onload = function() {
+    // Check if 'redirected' is set to 'yes' in sessionStorage
+    if (sessionStorage.getItem('redirected') === 'yes') {
+        
+        // Retrieve the selected phone features from sessionStorage
+        const selectedFeatures = sessionStorage.getItem('selectedPhoneFeatures');
+        
+        // Check if there are selected features in sessionStorage
+        if (selectedFeatures) {
+            const features = JSON.parse(selectedFeatures);
+
+            // Loop through each feature and select the corresponding option in the form
+            for (const [key, value] of Object.entries(features)) {
+                const element = document.getElementById(key);
+                if (element) {
+                    // For select elements
+                    if (element.tagName === 'SELECT') {
+                        // Check if the value exists in the options
+                        if ([...element.options].some(option => option.value === value)) {
+                            element.value = value;
+                        }
+                    } else if (element.tagName === 'INPUT' && element.type === 'text') {
+                        // For input elements (processorInput)
+                        element.value = value;
+                    }
+                }
+            }
+            
+        }
+        let b = document.getElementsByTagName("button")[0];
+        b.click();
+        sessionStorage.removeItem('redirected');
+    }
+};
+
+
+    </script>
+</body>
+</html>

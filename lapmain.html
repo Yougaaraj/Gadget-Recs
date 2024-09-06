@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Filters</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+        .title-bar {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            margin-bottom: 20px;
+        }
+        h2, h3 {
+            margin: 0;
+        }
+        .filter {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .filter select, .filter input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        .apply-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .processor-item:hover {
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title-bar">Laptop Filters</h1>
+        <form id="searchForm">
+            <div class="filter">
+                <h2>RAM Size</h2>
+                <select id="ram_size" name="ram_size">
+                    <option value="">Select</option>
+                    <option value="8 GB">8 GB</option>
+                    <option value="16 GB">16 GB</option>
+                    <option value="32 GB">32 GB</option>
+                    <option value="64 GB">64 GB</option>
+                    <option value="4 GB">4 GB</option>
+                    <option value="24 GB">24 GB</option>
+                </select>
+            </div>
+
+            <div class="filter">
+                <h2>RAM Type</h2>
+                <select id="ram_type" name="ram_type">
+                    <option value="">Select</option>
+                    <option value="DDR4">DDR4</option>
+                    <option value="DDR5">DDR5</option>
+                    <option value="LPDDR4X">LPDDR4X</option>
+                    <option value="LPDDR5">LPDDR5</option>
+                    <option value="LPDDR5X">LPDDR5X</option>
+                </select>
+            </div>
+
+            <div class="filter">
+                <h2>Internal Storage</h2>
+                <select id="internal_storage" name="internal_storage">
+                    <option value="">Select</option>
+                    <option value="512 GB SSD">512 GB SSD</option>
+                    <option value="1 TB SSD">1 TB SSD</option>
+                    <option value="256 GB SSD">256 GB SSD</option>
+                    <option value="128 GB SSD">128 GB SSD</option>
+                    <option value="2 TB SSD">2 TB SSD</option>
+                    <option value="1 TB HDD">1 TB HDD</option>
+                </select>
+            </div>
+            <div class="filter">
+                <h2>Processor</h2>
+                <input type="text" id="processor" name="processor" placeholder="Enter processor name">
+                <div id="processorList"></div>
+            </div>
+            
+            <div class="filter">
+                <h2>Processor Cores</h2>
+                <select id="cores" name="cores">
+                    <option value="">Select</option>
+                    <option value="6">6</option>
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="8">8</option>
+                    <option value="14">14</option>
+                    <option value="16">16</option>
+                    <option value="20">20</option>
+                    <option value="5">5</option>
+                    <option value="24">24</option>
+                </select>
+            </div>
+
+            <div class="filter">
+                <h2>OS</h2>
+                <select id="os" name="os">
+                    <option value="">Select</option>
+                    <optgroup label="Microsoft">
+                        <option value="Windows 11">Windows 11</option>
+                        <option value="Windows 10">Windows 10</option>
+                        <option value="Windows 8.1">Windows 8.1</option>
+                        <option value="Windows 8">Windows 8</option>
+                        <option value="DOS">DOS</option>
+                    </optgroup>
+                    <optgroup label="Apple (macOS)">
+                        <option value="macOS Sonoma">macOS Sonoma</option>
+                        <option value="macOS Ventura">macOS Ventura</option>
+                        <option value="macOS Monterey">macOS Monterey</option>
+                        <option value="macOS Big Sur">macOS Big Sur</option>
+                        <option value="macOS Catalina">macOS Catalina</option>
+                    </optgroup>
+                    <optgroup label="Google">
+                        <option value="Google Chrome">Google Chrome (Chrome OS)</option>
+                    </optgroup>
+                    <optgroup label="Linux Distributions">
+                        <option value="Ubuntu">Ubuntu</option>
+                        <option value="Linux">Linux</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="filter">
+                <h2>Screen Size</h2>
+                <select id="screenSize" name="screenSize">
+                    <option value="">Select</option>
+                    <option value="lessThan14">Less than 14 inches</option>
+                    <option value="14to15.9">14 to 15.9 inches</option>
+                    <option value="16to17.9">16 to 17.9 inches</option>
+                    <option value="18AndAbove">18 inches and above</option>
+                </select>
+            </div>
+            <div class="filter">
+                <h2>GPU Brand</h2>
+                <select id="gpuBrand" name="gpuBrand">
+                    <option value="">Select</option>
+                    <option value="Intel">Intel</option>
+                    <option value="AMD">AMD</option>
+                    <option value="Apple">Apple</option>
+                    <option value="Qualcom">Qualcom</option>
+                    <option value="Nvidia">Nvidia</option>
+                </select>
+            </div>
+            
+            <div class="filter">
+                <h2>Price</h2>
+                <select id="price" name="price">
+                    <option value="">Select</option>
+                    <option value="20000 - 40000">20000 - 40000</option>
+                    <option value="40000 - 60000">40000 - 60000</option>
+                    <option value="60000 - 80000">60000 - 80000</option>
+                    <option value="Above 100000">Above 100000</option>
+                </select>
+            </div>
+
+            <button type="button" class="apply-button" onclick="applyFilters()">Apply Filters</button>
+
+        </form>
+    </div>
+    <div id="laptopsList"></div>
+
+    <script>
+        document.getElementById('processor').addEventListener('input', function() {
+      const inputValue = this.value.toLowerCase();
+
+      fetch('lap_processors.json')
+        .then(response => response.json())
+        .then(data => {
+          const processorsArray = data.processors; // Access the array of strings
+          const filteredProcessors = processorsArray
+            .filter(processor => processor.toLowerCase().includes(inputValue))
+            .slice(0, 10);
+
+          const processorList = document.getElementById('processorList');
+          processorList.innerHTML = '';
+
+          filteredProcessors.forEach(processor => {
+            const processorItem = document.createElement('div');
+            processorItem.textContent = processor;
+            processorItem.classList.add('processor-item');
+            processorItem.addEventListener('click', function() {
+              document.getElementById('processor').value = processor;
+              processorList.innerHTML = ''; // Clear the suggestion list
+            });
+            processorList.appendChild(processorItem);
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching processors:', error);
+        });
+    });
+        
+    function applyFilters() {
+    const form = document.getElementById('searchForm');
+    const formData = new FormData(form);
+    const queryString = new URLSearchParams(formData).toString();
+
+    fetch(`lap_search.php?${queryString}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log('Raw data:', data); // Check the raw data received from the server
+            if (data.length > 0) {
+                console.log('Filtered data:', data);
+                displayLaptops(data); // A function to display the data on the page
+                // Redirect to the next webpage if data is retrieved successfully
+                window.location.href = 'lap_results.php'; // Replace 'next_page.php' with the URL of the next webpage
+            } else {
+                console.log('No data found');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+        const ramSize = document.getElementById('ram_size').value;
+    const ramType = document.getElementById('ram_type').value;
+    const internalStorage = document.getElementById('internal_storage').value;
+    const processor = document.getElementById('processor').value;
+    const cores = document.getElementById('cores').value;
+    const os = document.getElementById('os').value;
+    const screenSize = document.getElementById('screenSize').value;
+    const gpuBrand = document.getElementById('gpuBrand').value;
+    const price = document.getElementById('price').value;
+
+    // Create an object to store selected filter values
+    const selectedFilters = {
+        ramSize: ramSize,
+        ramType: ramType,
+        internalStorage: internalStorage,
+        processor: processor,
+        cores: cores,
+        os: os,
+        screenSize: screenSize,
+        gpuBrand: gpuBrand,
+        price: price
+    };
+
+    // Store selected filter values in session storage
+    sessionStorage.setItem('lap_selected_features', JSON.stringify(selectedFilters));
+    // Call the function to fetch data and process additional features
+fetchAndProcessData(selectedFilters);
+}
+
+function displayLaptops(laptops) {
+    const laptopsList = document.getElementById('laptopsList');
+    laptopsList.innerHTML = '';
+
+    laptops.forEach(laptop => {
+        const laptopDiv = document.createElement('div');
+        laptopDiv.classList.add('laptop');
+
+        // Iterate through all keys in the laptop object
+        Object.keys(laptop).forEach(key => {
+            // Check if the value of the field is not null or empty
+            if (laptop[key] !== null && laptop[key] !== '') {
+                const laptopDetail = document.createElement('p');
+                laptopDetail.textContent = `${key}: ${laptop[key]}`;
+                laptopDiv.appendChild(laptopDetail);
+            }
+        });
+
+        laptopsList.appendChild(laptopDiv);
+    });
+}
+// Example function to fetch data from process_filters.php and process additional features
+
+function fetchAndProcessData(selectedFilters) {
+    // Define all possible features (columns)
+    const allFeatures = ['cores', 'gpuBrand', 'internalStorage', 'os', 'price', 'processor', 'ramSize', 'ramType', 'screensize'];
+
+    // Extract non-empty selected features
+    const selectedFeatures = Object.keys(selectedFilters)
+        .filter(key => selectedFilters[key] !== null && selectedFilters[key] !== "");
+
+    // Fetch data from process_filters.php using selectedFilters
+    fetch(`lap_process_filters.php`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(selectedFilters)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Matching data from search history:');
+        console.log(data);
+
+        // Initialize an object to store additional features
+        const additionalFeatures = {};
+
+        // Iterate over the returned data
+        data.forEach((record, index) => {
+            // Initialize additional features for the current record
+            const recordFeatures = {};
+
+            // Iterate over each feature in the record
+            for (const key in record) {
+                // Check if the feature is not in selectedFeatures and has a value (non-empty)
+                if (!selectedFeatures.includes(key) && record[key] !== null && record[key] !== "") {
+                    recordFeatures[key] = record[key];
+                }
+            }
+
+            // Check if any additional features were found for this record
+            if (Object.keys(recordFeatures).length > 0) {
+                // Store additional features found for this record
+                additionalFeatures[`Record ${index + 1}`] = recordFeatures;
+            }
+        });
+
+        // Display additional features for debugging
+        console.log('Additional Features:');
+        console.log(additionalFeatures);
+
+        // Convert additional features object to JSON string
+        const jsonData = JSON.stringify(additionalFeatures);
+
+        // Store the JSON data in session storage under lap_suggestion
+        sessionStorage.setItem('lap_suggestion', jsonData);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
+window.onload = function() {
+    // Check if 'redirected' is set to 'yes' in sessionStorage
+    if (sessionStorage.getItem('redirected') === 'yes') {
+        
+        // Retrieve the selected laptop features from sessionStorage
+        const selectedFeatures = sessionStorage.getItem('lap_selected_filters');
+        
+        // Check if there are selected features in sessionStorage
+        if (selectedFeatures) {
+            const features = JSON.parse(selectedFeatures);
+
+            // Loop through each feature and select the corresponding option in the form
+            for (const [key, value] of Object.entries(features)) {
+                let elementId = key; // Assume element ID matches key by default
+                if (key === 'screen_size') {
+                    elementId = 'screenSize'; // Adjust element ID for 'screen_size'
+                } else if (key === 'gpu') {
+                    elementId = 'gpuBrand'; // Adjust element ID for 'gpu'
+                }
+
+                const element = document.getElementById(elementId);
+                if (element) {
+                    // For select elements
+                    if (element.tagName === 'SELECT') {
+                        // Check if the value exists in the options
+                        if ([...element.options].some(option => option.value === value)) {
+                            element.value = value;
+                        }
+                    } else if (element.tagName === 'INPUT' && element.type === 'text') {
+                        // For input elements
+                        element.value = value;
+                    }
+                }
+            }
+        }
+
+        // Simulate a click on the first button (adjust as per your HTML structure)
+        let button = document.getElementsByTagName("button")[0];
+        button.click();
+
+        // Remove the 'redirected' flag from sessionStorage
+        sessionStorage.removeItem('redirected');
+    }
+};
+
+
+
+
+    </script>
+</body>
+</html>
